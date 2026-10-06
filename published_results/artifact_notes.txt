@@ -1,0 +1,2 @@
+Secondary K/S risk curves and explicit per-example metadata are generated solely from saved predictions, with no repeated training or inference. Fashion dataset_label is archival garment metadata; mnist_digit_label is -1 for OOD and no Fashion digit accuracy is computed.
+Primary risk_coverage.png uses 1-MSP. All histograms use 30 equal-width bins on [0,1].

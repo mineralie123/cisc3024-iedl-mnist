@@ -1,0 +1,113 @@
+{
+    "protocol":  {
+                     "version":  "1.0",
+                     "split_seed":  3024,
+                     "seeds":  [
+                                   510,
+                                   511,
+                                   512
+                               ],
+                     "pilot_seed":  999,
+                     "classes":  10,
+                     "train_size":  10000,
+                     "validation_size":  2000,
+                     "train_per_class":  1000,
+                     "validation_per_class":  200,
+                     "mnist_test_size":  10000,
+                     "fashion_test_size":  10000,
+                     "fashion_train":  false,
+                     "kmnist":  false,
+                     "preprocessing":  "ToTensor only; no normalization, resizing or augmentation",
+                     "train_batch":  64,
+                     "eval_batch":  256,
+                     "workers":  0,
+                     "pin_memory":  false,
+                     "drop_last":  false,
+                     "intra_threads":  4,
+                     "inter_threads":  1,
+                     "device":  "cpu",
+                     "model_dtype":  "float32",
+                     "loss_dtype":  "float64",
+                     "architecture":  "conv1-16-32-32(k5,p2,pool2);288-32-32-32-10;ReLU",
+                     "optimizer":  "Adam",
+                     "lr":  0.001,
+                     "betas":  [
+                                   0.9,
+                                   0.999
+                               ],
+                     "adam_eps":  1E-08,
+                     "weight_decay":  0.0,
+                     "scheduler":  false,
+                     "gradient_clipping":  false,
+                     "fisher_coefficient":  0.005,
+                     "kl_anneal_epochs":  10,
+                     "loss_epoch_indexing":  "zero-based t; KL=min(1,t/10); completed epoch=t+1",
+                     "order_seed_offset":  100000,
+                     "minimum_epochs":  15,
+                     "patience":  5,
+                     "validation_frequency":  1,
+                     "selection":  "max correct count, min predictive NLL, earliest epoch",
+                     "pilot_epochs":  2,
+                     "budget_thresholds":  [
+                                               [
+                                                   160.0,
+                                                   30
+                                               ],
+                                               [
+                                                   240.0,
+                                                   20
+                                               ],
+                                               [
+                                                   320.0,
+                                                   15
+                                               ]
+                                           ],
+                     "ece_bins":  15,
+                     "histogram_bins":  30,
+                     "histogram_range":  [
+                                             0.0,
+                                             1.0
+                                         ],
+                     "histogram_note":  "30 equal-width bins over [0,1], explicitly confirmed by user before results",
+                     "primary_uncertainty":  "1-max(q)",
+                     "secondary_uncertainty":  "K/S (EDL and I-EDL only)",
+                     "mutual_information":  false,
+                     "ood_positive":  1,
+                     "coverage_levels":  [
+                                             0.5,
+                                             0.8,
+                                             0.9,
+                                             1.0
+                                         ],
+                     "aurc_definition":  "mean risk over all retained counts 1..N",
+                     "ece_definition":  "equal-width [lower,upper) bins; final bin includes 1",
+                     "sample_std_ddof":  1
+                 },
+    "paths":  {
+                  "root":  ".",
+                  "data":  "datasets",
+                  "split":  "datasets/mnist_split_3024.npz"
+              },
+    "methods":  [
+                    "softmax",
+                    "edl",
+                    "iedl"
+                ],
+    "source_fingerprint":  "cd530dea657a9c1b7426ab10de8c2090d172e3b312e5b4602558ba92660d841f",
+    "environment":  {
+                        "python":  "3.11.0",
+                        "interpreter":  ".venv/Scripts/python.exe",
+                        "os":  "Windows-10-10.0.26200-SP0",
+                        "cpu_count":  16,
+                        "packages":  {
+                                         "torch":  "2.14.1+cpu",
+                                         "torchvision":  "0.29.1+cpu",
+                                         "numpy":  "2.4.6",
+                                         "matplotlib":  "3.11.2",
+                                         "scikit-learn":  "1.9.1"
+                                     },
+                        "threads":  4,
+                        "interop":  1,
+                        "torch_cuda_available":  false
+                    }
+}

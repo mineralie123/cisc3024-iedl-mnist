@@ -1,0 +1,9 @@
+# Recorded working environment: Python 3.11.0, CPU-only PyTorch.
+# Availability of these exact versions on a fresh machine is not tested here.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.14.1+cpu
+torchvision==0.29.1+cpu
+numpy==2.4.6
+matplotlib==3.11.2
+scikit-learn==1.9.1
+scipy==1.17.1

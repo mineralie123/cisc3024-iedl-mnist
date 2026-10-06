@@ -1,0 +1,12 @@
+Recorded experiment environment (sanitized publication copy)
+Python: 3.11.0
+Windows 11; Intel Core i5-1340P; approximately 32 GB RAM
+torch: 2.14.1+cpu
+torchvision: 0.29.1+cpu
+numpy: 2.4.6
+matplotlib: 3.11.2
+scikit-learn: 1.9.1
+scipy: 1.17.1
+CPU only; CUDA unavailable
+Experiment threads: 4 intra-op, 1 inter-op
+Local username and absolute project/interpreter paths removed.

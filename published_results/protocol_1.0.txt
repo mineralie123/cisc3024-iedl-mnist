@@ -1,0 +1,207 @@
+Step 4: Frozen Experimental Protocol
+
+Tool:
+Codex
+
+Purpose:
+Freeze the complete experimental design before implementation or observing any experimental results.
+
+Protocol version:
+1.0
+
+Experiment type:
+Reduced reproduction of I-EDL for CPU-only execution.
+
+Dataset:
+- MNIST official training partition used only for train/validation selection.
+- 10,000 training images: exactly 1,000 per digit.
+- 2,000 validation images: exactly 200 per digit.
+- Remaining 48,000 MNIST training images unused.
+- Stratified split generated with NumPy PCG64 seed 3024.
+- Full official 10,000-image MNIST test set reserved for final ID evaluation.
+- Full Fashion-MNIST 10,000-image test set used only for final OOD evaluation.
+- KMNIST excluded.
+
+Preprocessing:
+- Float32 tensors, shape 1x28x28
+- Pixel range [0,1]
+- No augmentation
+- No resizing
+- No normalization
+- Train batch size 64
+- Evaluation batch size 256
+- Loader workers 0
+- Keep final partial batches
+
+Shared CNN:
+- Conv 1->16, 5x5, padding 2, ReLU, max-pool
+- Conv 16->32, 5x5, padding 2, ReLU, max-pool
+- Conv 32->32, 5x5, padding 2, ReLU, max-pool
+- Flatten 288
+- Dense 288->32->32->32->10
+- No dropout
+- No batch normalization
+- No spectral normalization
+
+Methods:
+
+1. Softmax
+- Cross-entropy objective
+- Prediction from softmax probabilities
+
+2. Standard EDL
+- Evidence = softplus(logits)
+- alpha = evidence + 1
+- predictive probabilities = alpha / S
+- MSE-based evidential loss
+- variance term
+- masked Dirichlet KL
+- KL annealing
+
+3. I-EDL
+- Same evidence and Dirichlet representation as EDL
+- Fisher-weighted squared error
+- Fisher-weighted variance
+- negative Fisher log-determinant
+- masked Dirichlet KL
+- Fisher coefficient lambda_1 = 0.005
+- KL annealing min(1, epoch / 10)
+
+Numerical rules:
+- CNN parameters and activations: float32
+- Loss/output transformations: float64
+- Stable library softplus
+- Cholesky-based Fisher log-determinant
+- No silent clamping, jitter, or replacement of nonfinite terms
+- Nonfinite values terminate the affected run and produce diagnostics
+
+Optimization:
+- Adam
+- Learning rate 0.001
+- Betas (0.9, 0.999)
+- Epsilon 1e-8
+- Weight decay 0
+- No scheduler
+- No gradient clipping
+
+Training seeds:
+510, 511, 512
+
+Fairness:
+- Same dataset split for every method and seed
+- Same initial raw network weights within each paired seed
+- Same minibatch permutation within each paired seed/epoch
+- Independent optimizer states
+
+CPU execution:
+- CPU only
+- 4 intra-operation threads
+- 1 inter-operation thread
+- Deterministic algorithms where supported
+
+Timing pilot:
+- Separate from final experiment
+- Pilot seed 999
+- Each method runs 2 complete epochs
+- Used only to estimate runtime
+- Pilot weights discarded
+
+Training budget rule:
+- Slowest pilot epoch <=160 s: maximum 30 epochs
+- 160–240 s: maximum 20 epochs
+- 240–320 s: maximum 15 epochs
+- >320 s: protocol considered impractical and final runs do not start
+
+Early stopping:
+- Validation after every epoch
+- No stopping before 15 completed epochs
+- Patience 5
+- Best checkpoint selected by:
+  1. highest validation correct-prediction count
+  2. lower validation predictive NLL
+  3. earlier epoch if still tied
+- Reload selected checkpoint before final evaluation
+
+Classification metrics:
+- Accuracy
+- Negative log likelihood
+- Standard class-summed multiclass Brier score
+- 15-bin expected calibration error
+- Training time
+- Completed epochs
+
+Uncertainty:
+Primary common score:
+- 1 - maximum predicted probability
+
+Secondary evidential score:
+- K / S for EDL and I-EDL
+
+Mutual information:
+Excluded from the compact primary protocol.
+
+OOD evaluation:
+- MNIST = ID class 0
+- Fashion-MNIST = OOD class 1
+- OOD is the positive class
+- AUROC
+- Average precision
+- No classification accuracy reported on Fashion-MNIST
+
+Risk-coverage:
+- Evaluate on MNIST test data
+- AURC
+- Risk at 50%, 80%, 90%, and 100% coverage
+
+Frozen report artifacts:
+- Classification metrics table
+- OOD/rejection table
+- Per-seed results
+- Mean ± sample standard deviation
+- Training objective curves
+- Validation accuracy/NLL curves
+- Reliability diagrams
+- Risk-coverage curves
+- ID/OOD uncertainty histograms
+- Evidential K/S plots
+- Frozen config
+- Split indices
+- Timing pilot record
+- Per-seed histories
+- Final checkpoints
+- Per-example probabilities and uncertainty scores
+- Verification record
+
+Interpretation restrictions:
+- Do not claim universal I-EDL superiority.
+- Do not claim statistical significance from three seeds without appropriate analysis.
+- Do not describe I-EDL as Bayesian posterior inference over CNN weights.
+- Do not claim improved calibration or OOD behavior unless measured.
+- Do not retrospectively select favorable seeds, metrics, scores, or checkpoints.
+- Do not change hyperparameters based on final test/OOD results.
+
+Debugging boundary:
+Allowed:
+- syntax errors
+- tensor-shape errors
+- path/device problems
+- incorrect metric formulas
+- incorrect loss transcription
+- broken seed pairing
+- mathematically equivalent numerical-stability fixes
+
+Not allowed:
+- changing architecture
+- changing lambda
+- changing dataset size or split
+- changing optimizer
+- changing uncertainty score
+- changing checkpoint selection
+because results are poor.
+
+Protocol deviations:
+Any unavoidable design change must create protocol version 1.1 or later, be logged before dependent work, and be disclosed in the final report.
+
+Final status:
+Protocol 1.0 is frozen before implementation and before observing experimental results.
+No implementation, installation, or training was performed in this step.

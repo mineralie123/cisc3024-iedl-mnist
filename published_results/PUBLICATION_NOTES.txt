@@ -1,0 +1,6 @@
+Publication copies only; original experiment results and source were not changed.
+Configuration paths and interpreter were replaced with relative paths. Protocol values and metric values were preserved.
+Historical fingerprint includes the original checkout path; use individual source hashes for source comparison. A fresh checkout runs a fresh pilot.
+Pilot seed 999; largest combined epoch time 16.278363 seconds; selected maximum 30 epochs. Decision used runtime only; pilot weights were not reused.
+Plots use seed 511 consistently for comparisons, plus EDL seed 512 to illustrate its checkpoint behavior. All-seed tables are included.
+Personal prompts, summaries, reflection, full prediction arrays and checkpoints are not part of this publication selection.

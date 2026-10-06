@@ -1,0 +1,11 @@
+{
+    "project\\artifacts.py":  "6d8696e38c01896f868952fec62ad8c672e95613fc932e353486d97b8fa1937a",
+    "project\\config.py":  "d9ea6b7b155804451cf2b564e2276a285369ed77b8321f5924c83818972ca3ba",
+    "project\\data.py":  "d3ac250e91b1f5e3858a974c5234439d9be99a0fd40caca7b2aec8af48c8b7e8",
+    "project\\evaluation.py":  "fd66ee3478fb0a321aa331cabb650f9ceae38351122f46595f7f488a11bff0b6",
+    "project\\losses.py":  "baf83a4fe78e5ff2abe59146aa4792fdedd5c37d58ae1c61772d62918aca16bc",
+    "project\\models.py":  "4bb977da0fb3bcec1554f84d2764b66a6f5fdd34eb8f80d33157c08d7e2cbda1",
+    "project\\run.py":  "a6961996c04ae1cbb6372164ededaa15ce2c06078bb9628e00b620caed74dacf",
+    "project\\smoke_test.py":  "d38dfaabff84e1771fee96c8d61c0285e924b854a07b49706427c5436e220e78",
+    "project\\training.py":  "a9cf41f9cc58e9bc066675a471d530bc70e567e7c9e20c3a7a1d86c3b261d0e7"
+}

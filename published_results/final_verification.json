@@ -1,0 +1,118 @@
+{
+  "status": "PASS",
+  "protocol": "1.0",
+  "runs": [
+    {
+      "seed": 510,
+      "method": "softmax",
+      "status": "PASS",
+      "completed_epochs": 22,
+      "selected_epoch": 17,
+      "training_seconds": 299.65500549948774,
+      "train_validation_seconds": 330.96749870013446
+    },
+    {
+      "seed": 510,
+      "method": "edl",
+      "status": "PASS",
+      "completed_epochs": 28,
+      "selected_epoch": 23,
+      "training_seconds": 484.67414349876344,
+      "train_validation_seconds": 526.6006024000235
+    },
+    {
+      "seed": 510,
+      "method": "iedl",
+      "status": "PASS",
+      "completed_epochs": 30,
+      "selected_epoch": 25,
+      "training_seconds": 461.942804899998,
+      "train_validation_seconds": 506.5659751002677
+    },
+    {
+      "seed": 511,
+      "method": "softmax",
+      "status": "PASS",
+      "completed_epochs": 23,
+      "selected_epoch": 18,
+      "training_seconds": 715.2196642991621,
+      "train_validation_seconds": 745.5009150002152
+    },
+    {
+      "seed": 511,
+      "method": "edl",
+      "status": "PASS",
+      "completed_epochs": 18,
+      "selected_epoch": 13,
+      "training_seconds": 328.0336328006815,
+      "train_validation_seconds": 353.01049240049906
+    },
+    {
+      "seed": 511,
+      "method": "iedl",
+      "status": "PASS",
+      "completed_epochs": 28,
+      "selected_epoch": 23,
+      "training_seconds": 421.6027386998758,
+      "train_validation_seconds": 463.10065240063705
+    },
+    {
+      "seed": 512,
+      "method": "softmax",
+      "status": "PASS",
+      "completed_epochs": 20,
+      "selected_epoch": 15,
+      "training_seconds": 266.3971086004749,
+      "train_validation_seconds": 294.3005977002904
+    },
+    {
+      "seed": 512,
+      "method": "edl",
+      "status": "PASS",
+      "completed_epochs": 15,
+      "selected_epoch": 1,
+      "training_seconds": 210.69918510038406,
+      "train_validation_seconds": 232.24923930014484
+    },
+    {
+      "seed": 512,
+      "method": "iedl",
+      "status": "PASS",
+      "completed_epochs": 25,
+      "selected_epoch": 20,
+      "training_seconds": 375.07986540021375,
+      "train_validation_seconds": 412.21753779938444
+    }
+  ],
+  "checks": {
+    "all_nine_runs": true,
+    "exact_seeds_and_methods": true,
+    "actual_initial_weights_paired_and_fresh": true,
+    "actual_epoch_orders_paired": true,
+    "frozen_split_unchanged": true,
+    "train_validation_only_selection": true,
+    "all_fits_before_test_ood_inference": true,
+    "selected_weights_reloaded": true,
+    "one_id_and_one_ood_inference_per_run": true,
+    "all_metrics_finite_and_verified": true,
+    "all_required_plots": true,
+    "all_aggregate_means_and_sample_sd_verified": true,
+    "cpu_precision_and_optimizer": true,
+    "core_source_and_protocol_unchanged": true
+  },
+  "source_hashes": {
+    "project\\artifacts.py": "6d8696e38c01896f868952fec62ad8c672e95613fc932e353486d97b8fa1937a",
+    "project\\config.py": "d9ea6b7b155804451cf2b564e2276a285369ed77b8321f5924c83818972ca3ba",
+    "project\\data.py": "d3ac250e91b1f5e3858a974c5234439d9be99a0fd40caca7b2aec8af48c8b7e8",
+    "project\\evaluation.py": "fd66ee3478fb0a321aa331cabb650f9ceae38351122f46595f7f488a11bff0b6",
+    "project\\losses.py": "baf83a4fe78e5ff2abe59146aa4792fdedd5c37d58ae1c61772d62918aca16bc",
+    "project\\models.py": "4bb977da0fb3bcec1554f84d2764b66a6f5fdd34eb8f80d33157c08d7e2cbda1",
+    "project\\run.py": "a6961996c04ae1cbb6372164ededaa15ce2c06078bb9628e00b620caed74dacf",
+    "project\\smoke_test.py": "d38dfaabff84e1771fee96c8d61c0285e924b854a07b49706427c5436e220e78",
+    "project\\training.py": "a9cf41f9cc58e9bc066675a471d530bc70e567e7c9e20c3a7a1d86c3b261d0e7"
+  },
+  "execution_wall_seconds": 4035.6999454000033,
+  "bugs_or_corrections": [],
+  "protocol_deviations": [],
+  "export_note": "Secondary K/S risk curves and explicit per-example metadata are generated solely from saved predictions, with no repeated training or inference. Fashion dataset_label is archival garment metadata; mnist_digit_label is -1 for OOD and no Fashion digit accuracy is computed."
+}
